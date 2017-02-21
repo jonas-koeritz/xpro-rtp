@@ -58,9 +58,6 @@ client.on('data', function(data) {
             client.write(ALIVE_REPLY);
             break;
         case 0x0111: //Login Accept
-            sendCommand(client, 0xA025, Buffer.from([0x01, 0x00, 0x00, 0x00]));
-            break;
-        case 0xA026:
             sendCommand(client, 0xA034); //Request Firmware info
             break;
         case 0xA035:
