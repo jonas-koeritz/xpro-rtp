@@ -36,6 +36,9 @@ videoReceiver.on('message', function(msg, rinfo) {
 
         videoSender.send(Buffer.concat([rtpPacket, frameBuffer]), 8888, "127.0.0.1");
 
+        //Use this line to send a raw stream, playable using `ffplay udp://127.0.0.1:8888`
+        //videoSender.send(frameBuffer, 8888, "127.0.0.1");
+
         frameBuffer = Buffer.alloc(0);
         sequenceNumber++;
     }
