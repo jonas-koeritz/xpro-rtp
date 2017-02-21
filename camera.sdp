@@ -1,0 +1,3 @@
+m=video 8888 RTP/AVP 99
+a=rtpmap:99 H264/90000
+a=fmtp:99 packetization-mode=1;profile-level-id=42c01e;
