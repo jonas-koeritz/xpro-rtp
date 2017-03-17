@@ -1,5 +1,8 @@
 {
   "name": "action-cam",
   "version": "0.0.1",
-  "main": "index.js"
+  "main": "index.js",
+  "repository": "git@github.com:jonas-koeritz/xpro-rtp.git",
+  "author": "Jonas Köritz <jonas.koeritz@gmail.com>",
+  "license": "Apache-2.0"
 }
