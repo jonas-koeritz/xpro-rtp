@@ -46,7 +46,7 @@ videoReceiver.on('message', function(msg, rinfo) {
 
 });
 
-client.connect(6666, '192.168.198.115', function() {
+client.connect(6666, '192.168.100.1', function() {
     console.log("Connected to Action-Cam");
     login(client, "admin", "12345");
 });
