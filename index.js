@@ -27,8 +27,8 @@ videoReceiver.on('message', function(msg, rinfo) {
     if(channel == 1) {
         var payload = msg.slice(8);
         frameBuffer = Buffer.concat([frameBuffer, payload]);
-    } else {
-        elapsed = msg.readUInt32LE(20);
+    } else if(channel == 2) {
+
         rtpPacket.writeUInt16BE(0x8063, 0);
         rtpPacket.writeUInt16BE(sequenceNumber, 2);
         rtpPacket.writeUInt32BE(elapsed * 90, 4);
@@ -38,6 +38,7 @@ videoReceiver.on('message', function(msg, rinfo) {
 
         //Use this line to send a raw stream, playable using `ffplay udp://127.0.0.1:8888`
         //videoSender.send(frameBuffer, 8888, "127.0.0.1");
+        elapsed = msg.readUInt32LE(20);
 
         frameBuffer = Buffer.alloc(0);
         sequenceNumber++;
@@ -45,7 +46,7 @@ videoReceiver.on('message', function(msg, rinfo) {
 
 });
 
-client.connect(6666, '192.168.100.1', function() {
+client.connect(6666, '192.168.198.115', function() {
     console.log("Connected to Action-Cam");
     login(client, "admin", "12345");
 });
