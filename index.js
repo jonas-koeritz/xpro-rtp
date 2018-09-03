@@ -13,8 +13,6 @@ var ALIVE_REPLY = Buffer.from([0xab, 0xcd, 0x00, 0x00, 0x00, 0x00, 0x01, 0x13]);
 
 videoReceiver.bind(6669);
 
-var frameBuffer = Buffer.alloc(0);
-
 var rtpPacket = Buffer.alloc(12);
 
 videoReceiver.on('listening', function() {
@@ -26,7 +24,8 @@ videoReceiver.on('message', function(msg, rinfo) {
 
     if(channel == 1) {
         var payload = msg.slice(8);
-        frameBuffer = Buffer.concat([frameBuffer, payload]);
+        videoSender.send(payload, 8888, "127.0.0.1");
+        //frameBuffer = Buffer.concat([frameBuffer, payload]);
     } else if(channel == 2) {
 
         rtpPacket.writeUInt16BE(0x8063, 0);
@@ -34,13 +33,10 @@ videoReceiver.on('message', function(msg, rinfo) {
         rtpPacket.writeUInt32BE(elapsed * 90, 4);
         rtpPacket.writeUInt32BE(0, 8);
 
-        videoSender.send(Buffer.concat([rtpPacket, frameBuffer]), 8888, "127.0.0.1");
+        videoSender.send(rtpPacket, 8888, "127.0.0.1");
 
-        //Use this line to send a raw stream, playable using `ffplay udp://127.0.0.1:8888`
-        //videoSender.send(frameBuffer, 8888, "127.0.0.1");
         elapsed = msg.readUInt32LE(20);
 
-        frameBuffer = Buffer.alloc(0);
         sequenceNumber++;
     }
 
