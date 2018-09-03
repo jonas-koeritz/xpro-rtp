@@ -13,4 +13,4 @@
 
 ## Known limitations
 
-1. Video playback in VLC is laggy as long as the image is not dark enough or moving enough. This could be the result of the very naive RTP implementation, playing the raw stream using ffplay works flawlessly
+1. Video playback in VLC is laggy as long as the image is not dark enough or moving enough. This could be the result of the very naive RTP implementation, playing the raw stream using ffplay works flawlessly. This could be fixed by the latest commit (Thanks to Alexander G.), but I do not own a camera to try the changes with.
