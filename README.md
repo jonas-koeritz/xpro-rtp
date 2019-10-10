@@ -1,3 +1,7 @@
+# This project is deprecated
+
+See my other "actioncam" project for a replacement: [jonas-koeritz/actioncam](https://github.com/jonas-koeritz/actioncam)
+
 # XPro RTP
 
 ## Connecting to the camera
